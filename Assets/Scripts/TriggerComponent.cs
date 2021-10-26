@@ -5,11 +5,11 @@ public class TriggerComponent : MonoBehaviour
 {
     [SerializeField] private Collider blockCollider;
 
-    public static event Action OnEndedGame;
+    public event Action СrossedFinish;
     
     private void OnTriggerEnter(Collider other)
     {
         blockCollider.enabled = false;
-        OnEndedGame?.Invoke();
+        СrossedFinish?.Invoke();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,10 +7,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CarController carController;
     private int TimerTime;
 
+    [SerializeField] private TriggerComponent _triggerComponent;
+
+    public event Action<string> ChangedTimerTime, ChangedCountdown;
+    public event Action EndCountdown;
+
     private void Awake()
     {
         carController.enabled = false;
-        TriggerComponent.OnEndedGame += EndGame;
+        _triggerComponent.СrossedFinish += EndGame;
     }
 
     private void Start()
@@ -28,8 +34,8 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             TimerTime++;
-            UIManager.TimerTimeText.text = (TimerTime % 600) < 100 ? $"{TimerTime / 600}:0{TimerTime / 10 % 60}:{TimerTime % 10}" : $"{TimerTime / 600}:{TimerTime / 10 % 60}:{TimerTime % 10}";
-
+            ChangedTimerTime?.Invoke((TimerTime % 600) < 100 ? $"{TimerTime / 600}:0{TimerTime / 10 % 60}:{TimerTime % 10}" : $"{TimerTime / 600}:{TimerTime / 10 % 60}:{TimerTime % 10}");
+          
             yield return new WaitForSeconds(.1f);
         }
     }
@@ -38,15 +44,16 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 5; i > 0; i--)
         {
-            UIManager.CountDownText.text = i.ToString();
+            ChangedCountdown?.Invoke(i.ToString());
+
             yield return new WaitForSeconds(1);
         }
 
-        UIManager.CountDownText.text = "Start!";
+        ChangedCountdown?.Invoke("Start!");
         carController.enabled = true;
         StartCoroutine(Timer());
         yield return new WaitForSeconds(1);
-        UIManager.CountDownText.enabled = false;
+        EndCountdown?.Invoke();
 
         yield break;
     }
