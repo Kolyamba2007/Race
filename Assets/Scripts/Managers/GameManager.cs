@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private CarController carController;
+    //[SerializeField] private CarController carController;
+    [SerializeField] private RCC_CarControllerV3 carController;
     private int TimerTime;
 
     [SerializeField] private TriggerComponent _triggerComponent;
