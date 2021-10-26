@@ -5807,6 +5807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carController: {fileID: 219974868}
+  _triggerComponent: {fileID: 2131568752}
 --- !u!1001 &891880381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11855,6 +11856,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _countDownText: {fileID: 977952003}
   _timerTimeText: {fileID: 1831464604}
+  _triggerComponent: {fileID: 2131568752}
+  _gameManager: {fileID: 882231185}
 --- !u!1001 &2112682898
 PrefabInstance:
   m_ObjectHideFlags: 0

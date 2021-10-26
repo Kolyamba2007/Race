@@ -5,18 +5,16 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text _countDownText, _timerTimeText;
 
-    public static Text CountDownText;
-    public static Text TimerTimeText;
+    [SerializeField] private TriggerComponent _triggerComponent;
+    [SerializeField] private GameManager _gameManager;
 
     private void Awake()
     {
-        TriggerComponent.OnEndedGame += OpenResultsTable;
-    }
+        _gameManager.ChangedTimerTime += (string text) => _timerTimeText.text = text;
+        _gameManager.ChangedCountdown += (string text) => _countDownText.text = text;
+        _gameManager.EndCountdown += () => _countDownText.enabled = false;
 
-    void OnEnable()
-    {
-        CountDownText = _countDownText;
-        TimerTimeText = _timerTimeText;
+        _triggerComponent.СrossedFinish += OpenResultsTable;
     }
 
     private void OpenResultsTable()
