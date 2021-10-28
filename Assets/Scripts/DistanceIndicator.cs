@@ -6,7 +6,7 @@ using UnityEngine;
 public class DistanceIndicator : MonoBehaviour
 {
     [SerializeField]
-    private RCC_CharacterController _player;
+    private RCC_CarControllerV3 _player;
 
     [Header("UI")]
     [SerializeField]
@@ -28,11 +28,11 @@ public class DistanceIndicator : MonoBehaviour
     {
         width = _currentPath.rect.width;
         distance = CalculateDistance();
-        SetDistanceFactor(0.5f);
+        SetDistanceFactor(0f);
     }
     private void Update()
     {
-        if (_player.directionInput == 0) return;
+        if (_player.speed == 0) return;
 
         //float distance = (_points[currentPoint].position - _player.transform.position).sqrMagnitude;
     }
