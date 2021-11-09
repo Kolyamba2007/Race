@@ -1768,6 +1768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: M3_E36
       objectReference: {fileID: 0}
+    - target: {fileID: 102514, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 487532, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
       propertyPath: m_LocalPosition.x
       value: -272.08
@@ -6704,7 +6708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64678e06eb55f8841a44075698b08439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carController: {fileID: 280522408}
+  carController: {fileID: 1693492971}
+  rccController: {fileID: 280522408}
   _triggerComponent: {fileID: 2131568752}
 --- !u!1001 &891880381
 PrefabInstance:
@@ -11240,6 +11245,18 @@ Transform:
   m_Father: {fileID: 1069278413}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1693492971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5014174138572369635, guid: aab0a61677089c94a8413a26959165fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 735032711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc6181f2581fe040ad2a94d637d2b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1699548439
 GameObject:
   m_ObjectHideFlags: 0
