@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
         carController.enabled = false;
         rccController.enabled = false;
         StopAllCoroutines();
+
+        StartCoroutine(TimeDilation());
     }
 
     private IEnumerator Timer()
@@ -58,6 +60,18 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Timer());
         yield return new WaitForSeconds(1);
         EndCountdown?.Invoke();
+
+        yield break;
+    }
+
+    private IEnumerator TimeDilation()
+    {
+        while(Time.timeScale > .001f)
+        {
+            Time.timeScale -= Time.deltaTime;
+            yield return null;
+        }
+        Time.timeScale = 0;
 
         yield break;
     }
