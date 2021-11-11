@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private int TimerTime;
 
     [SerializeField] private TriggerComponent _triggerComponent;
+    [SerializeField] private TableComponent _tableComponent;
 
     public event Action<string> ChangedTimerTime, ChangedCountdown;
     public event Action EndCountdown;
@@ -19,7 +20,6 @@ public class GameManager : MonoBehaviour
         rccController.enabled = false;
         _triggerComponent.СrossedFinish += EndGame;
     }
-
     private void Start()
     {
         StartCoroutine(Countdown());
@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
         carController.enabled = false;
         rccController.enabled = false;
         StopAllCoroutines();
+
+        _tableComponent.AddItem(TimerTime);
     }
 
     private IEnumerator Timer()
@@ -42,7 +44,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
     }
-
     private IEnumerator Countdown()
     {
         for (int i = 5; i > 0; i--)
