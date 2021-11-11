@@ -9611,7 +9611,7 @@ MonoBehaviour:
   carController: {fileID: 1693492971}
   rccController: {fileID: 280522408}
   _triggerComponent: {fileID: 2131568752}
-  _tableComponent: {fileID: 0}
+  _tableComponent: {fileID: 982417}
 --- !u!1001 &891880381
 PrefabInstance:
   m_ObjectHideFlags: 0
