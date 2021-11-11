@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //[SerializeField] private CarController carController;
-    [SerializeField] private RCC_CarControllerV3 carController;
+    [SerializeField] private CarController carController;
+    [SerializeField] private RCC_CarControllerV3 rccController;
     private int TimerTime;
 
     [SerializeField] private TriggerComponent _triggerComponent;
@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         carController.enabled = false;
+        rccController.enabled = false;
         _triggerComponent.СrossedFinish += EndGame;
     }
 
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         carController.enabled = false;
+        rccController.enabled = false;
         StopAllCoroutines();
     }
 
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
 
         ChangedCountdown?.Invoke("Start!");
         carController.enabled = true;
+        rccController.enabled = true;
         StartCoroutine(Timer());
         yield return new WaitForSeconds(1);
         EndCountdown?.Invoke();
