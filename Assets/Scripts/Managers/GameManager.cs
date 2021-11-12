@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
 
         _tableComponent.AddItem(ParseTimeToString(TimerTime));
+        _tableComponent.Show(true);
         StartCoroutine(TimeDilation());
     }
 
