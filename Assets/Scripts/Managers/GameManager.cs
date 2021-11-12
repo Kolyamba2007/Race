@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
 
         _tableComponent.AddItem(TimerTime);
+        _tableComponent.Show(true);
     }
 
     private IEnumerator Timer()
