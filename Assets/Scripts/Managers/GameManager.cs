@@ -31,8 +31,9 @@ public class GameManager : MonoBehaviour
         rccController.enabled = false;
         StopAllCoroutines();
 
-        _tableComponent.AddItem(TimerTime);
+        _tableComponent.AddItem(ParseTimeToString(TimerTime));
         _tableComponent.Show(true);
+        StartCoroutine(TimeDilation());
     }
 
     private IEnumerator Timer()
@@ -40,11 +41,17 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             TimerTime++;
-            ChangedTimerTime?.Invoke((TimerTime % 600) < 100 ? $"{TimerTime / 600}:0{TimerTime / 10 % 60}:{TimerTime % 10}" : $"{TimerTime / 600}:{TimerTime / 10 % 60}:{TimerTime % 10}");
+            ChangedTimerTime?.Invoke(ParseTimeToString(TimerTime));
           
             yield return new WaitForSeconds(.1f);
         }
     }
+
+    private string ParseTimeToString(int time)
+    {
+        return (time % 600) < 100 ? $"{time / 600}:0{time / 10 % 60}:{time % 10}" : $"{time / 600}:{time / 10 % 60}:{time % 10}";
+    }
+
     private IEnumerator Countdown()
     {
         for (int i = 5; i > 0; i--)
@@ -60,6 +67,18 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Timer());
         yield return new WaitForSeconds(1);
         EndCountdown?.Invoke();
+
+        yield break;
+    }
+
+    private IEnumerator TimeDilation()
+    {
+        while(Time.timeScale > .001f)
+        {
+            Time.timeScale -= Time.deltaTime;
+            yield return null;
+        }
+        Time.timeScale = 0;
 
         yield break;
     }
